@@ -21,7 +21,7 @@ bg.scale=1.5;
 var score=0;
 
 
-var boy =  createSprite(1140,400,20,40);
+boy =  createSprite(1140,400,20,40);
 boy.addImage(boy1) ;
 boy.scale=0.4;
 
@@ -30,11 +30,11 @@ textSize(25);
 textFont('Algerian');
 fill("yellow");
 
-var giraffeG = createGroup();
-var lionG = createGroup();
-var elephantG = createGroup();
-var pandaG = createGroup();
-var keyG = createGroup();
+giraffeG = createGroup();
+lionG = createGroup();
+elephantG = createGroup();
+pandaG = createGroup();
+keyG = createGroup();
 
 }
 
