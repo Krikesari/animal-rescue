@@ -1,7 +1,9 @@
-var bg, boy, giraffeG, lionG, elephantG, pandaG, keyG, cage, giraffe, panda, elephant, lion, key, boy1, key1, lion1, score, giraffe1, panda1, elephant1, cage1;
+var bg, boy, giraffeG, lionG, elephantG, pandaG, keyG, cage, giraffe, panda, elephant, lion, key, boy1, key1, lion1, score, giraffe1, panda1, elephant1, cage1,noOfKeys;
+
 
 var ANIMAL_SCALE = 0.25;
 var GAME_HEIGHT = 900;
+var ALL_KEYS = [];
 
 function preload() {
   bg_level1 = loadImage("bg_level1.png");
@@ -23,7 +25,7 @@ function setup() {
 
 
   score = 0;
-
+  noOfKeys=0;
 
   boy = createSprite(1140, 400, 20, 40);
   boy.addImage(boy1);
@@ -49,58 +51,68 @@ function draw() {
 
   boy.y = World.mouseY;
   var boyHeightHalf = boy.height * boy.scale / 2;
-  console.log(boy.y + "," + boyHeightHalf);
   if (boy.y - boyHeightHalf < 0) {
     boy.y = boyHeightHalf;
   } else if (boy.y + boyHeightHalf > GAME_HEIGHT) {
     boy.y = GAME_HEIGHT - boyHeightHalf;
   }
  
+  console.log(noOfKeys);
+
+
   createEdgeSprites();
 
   pandaF();
 
-  elephantF();
+   elephantF();
 
   lionF();
 
-  giraffeF();
+  // giraffeF();
 
   keyF();
 
-  if (pandaG.x - keyG.x < pandaG.width / 2 + keyG.width / 2 && keyG.x - pandaG.x < pandaG.width / 2 + keyG.width / 2) {
-
-    pandaG.destroyEach();
-    keyG.destroyEach();
-    score = score + 1;
-
+  for (i in ALL_KEYS) {
+    var key = ALL_KEYS[i];
+    if (!key.removed && !pandaG.removed && isIntersecting(pandaG, key)) {
+      pandaG.remove();
+      score += 1;
+      key.remove();
+    } else if (!key.removed && !elephantG.removed && isIntersecting(elephantG, key)) {
+      elephantG.remove();
+      score += 1;
+      key.remove();
+    }
+    else if (!key.removed && !lionG.removed && isIntersecting(lionG, key)) {
+      lionG.remove();
+      score += 1;
+      key.remove();
+    }
   }
-
-  if (giraffeG.x - keyG.x < giraffeG.width / 2 + keyG.width / 2 && keyG.x - giraffeG.x < giraffeG.width / 2 + keyG.width / 2) {
-
-    giraffeG.destroyEach();
-    keyG.destroyEach();
-    score = score + 1;
-
-  }
-  if (lionG.x - keyG.x < lionG.width / 2 + keyG.width / 2 && keyG.x - lionG.x < lionG.width / 2 + keyG.width / 2) {
-    //key.visible=false;
-    //lion.visible=false;
-    score = score + 1;
-
-  }
-
-  if (elephantG.x - keyG.x < elephantG.width / 2 + keyG.width / 2 && keyG.x - elephantG.x < elephantG.width / 2 + keyG.width / 2) {
-
-    elephantG.destroyEach();
-    keyG.destroyEach();
-    score = score + 1;
-
-  }
-
+                          
   drawSprites();
   text("Score:" + score, 1050, 50);
 
+  if (score > 30) {
+    window.location.href = "level1Complete.html";
+  }
+}
+
+function isIntersecting(object1, object2) {
+  var o1x = object1.x;
+  var o1y = object1.y;
+  var o1w = object1.width * object1.scale / 2;
+  var o1h = object1.height * object1.scale / 2;
+
+  var o2x = object2.x;
+  var o2y = object2.y;
+  var o2w = object2.width * object2.scale / 2;
+  var o2h = object2.height * object2.scale / 2;
+
+  console.log(o1w + "," + o2w);
+
+  return abs(o2x - o1x) <= o1w + o2w &&
+      abs(o2y - o1y) <= o1h + o2h;
 }
 
 
@@ -108,14 +120,15 @@ function draw() {
 function pandaF() {
 
 
-  if (World.frameCount % 80 === 10) {
+  if (World.frameCount % 180 === 100) {
     var cage = createSprite(150, 920, 20, 20);
 
     cage.addImage(cage1);
     cage.scale = ANIMAL_SCALE;
-    pandaG.add(cage);
+    // pandaG.add(cage);
     cage.velocityY = -(5 * score / 25 + 5);
     cage.x = random(20, 1000);
+    pandaG = cage;
 
     cage.lifetime = 900 / 5 + 10;
 
@@ -133,17 +146,19 @@ function pandaF() {
     cage.depth = cage.depth + 1;
   }
 }
+
 function elephantF() {
 
 
-  if (World.frameCount % 80 === 40) {
+  if (World.frameCount % 180 === 160) {
     var cage = createSprite(115, 920, 20, 20);
 
     cage.addImage(cage1);
     cage.scale = ANIMAL_SCALE;
-    elephantG.add(cage);
+    //elephantG.add(cage);
     cage.velocityY = -(5 * score / 25 + 5);
     cage.x = random(20, 1000);
+    elephantG = cage;
 
     cage.lifetime = 900 / 5 + 10;
 
@@ -153,8 +168,6 @@ function elephantF() {
     elephant.scale = ANIMAL_SCALE - 0.05;
 
     elephant.velocityY = -(5 * score / 25 + 5);
-
-
     elephant.lifetime = 900 / 5 + 10;
 
     cage.depth = elephant.depth;
@@ -165,13 +178,13 @@ function elephantF() {
 function lionF() {
 
 
-  if (World.frameCount % 80 === 0) {
+  if (World.frameCount % 180 === 40) {
     var cage = createSprite(70, 920, 20, 20);
 
     cage.addImage(cage1);
     cage.scale = ANIMAL_SCALE;
-    lionG.add(cage);
-
+    //lionG.add(cage);
+    lionG=cage;
     cage.velocityY = -(5 * score / 25 + 5);
     cage.x = random(20, 1000);
 
@@ -195,7 +208,7 @@ function lionF() {
 function giraffeF() {
 
 
-  if (World.frameCount % 80 === 0) {
+  if (World.frameCount % 180 === 0) {
     var cage = createSprite(70, 920, 20, 20);
 
     cage.addImage(cage1);
@@ -224,7 +237,7 @@ function giraffeF() {
 
 function keyF() {
 
-  if (keyDown('space') && World.frameCount % 20 === 19) {
+  if (keyDown('space') && World.frameCount % 60 === 59) {
 
     key = createSprite(boy.x, 200, 10, 10);
     key.addImage(key1);
@@ -236,9 +249,13 @@ function keyF() {
 
     key.y = boy.y;
 
-
+    noOfKeys=noOfKeys+1;
+    if(noOfKeys=4){
+    noOfKeys=0;
+    }
 
     key.lifetime = 210;
+    ALL_KEYS.push(key);
   }
 
 }
