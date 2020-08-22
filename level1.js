@@ -14,7 +14,7 @@ key1= loadImage('key.png');
  }
  function setup(){
 
-  createCanvas(1200, 900);
+  createCanvas(1200,900);
  var bg=createSprite(1200/2,425,1200,900);
 bg.addImage(bg_level1);   
 bg.scale=1.5;
@@ -46,10 +46,11 @@ function draw() {
 
 
     boy.y=World.mouseY;
-    
-    boy.collide(screenTop);
-    boy.collide(screenBottom);
-    createEdgeSprites();
+    //boy.collide = (screenTop, stop) 
+      
+    //boy.collide(screenTop);
+    //boy.collide(screenBottom);
+    //createEdgeSprites();
   
     pandaF();
     
@@ -61,37 +62,36 @@ function draw() {
     
    keyF();
                                              
-  //if (pandaG.x-keyG.x<pandaG.width/2+keyG.width/2&&keyG.x-pandaG.x<pandaG.width/2+keyG.width/2) {
-        
-    //pandaG.destroyEach();
-    //keyG.destroyEach();
-    //score=score+1;
+  if (pandaG.x-keyG.x<pandaG.width/2+keyG.width/2&&keyG.x-pandaG.x<pandaG.width/2+keyG.width/2) {
+   
+    pandaG.destroyEach();
+    keyG.destroyEach();
+    score=score+1;
     
-  //}
+  }
        
-      //if (giraffeG.x-keyG.x<giraffeG.width/2+keyG.width/2&&keyG.x-giraffeG.x<giraffeG.width/2+keyG.width/2)
-        //{
+      if (giraffeG.x-keyG.x<giraffeG.width/2+keyG.width/2&&keyG.x-giraffeG.x<giraffeG.width/2+keyG.width/2)
+        {
         
-        //giraffeG.destroyEach();
-        //keyG.destroyEach();
-        //score=score+1;
+        giraffeG.destroyEach();
+        keyG.destroyEach();
+        score=score+1;
         
-      //}
-      //if (lionG.x-keyG.x<lionG.width/2+keyG.width/2&&keyG.x-lionG.x<lionG.width/2+keyG.width/2){
+      }
+      if (lionG.x-keyG.x<lionG.width/2+keyG.width/2&&keyG.x-lionG.x<lionG.width/2+keyG.width/2){
+        //key.visible=false;
+        //lion.visible=false;
+        score=score+1;
         
-        //lionG.destroyEach();
-        //keyG.destroyEach();
-        //score=score+1;
-        
-     //}            
+     }            
       
-     //if (elephantG.x-keyG.x<elephantG.width/2+keyG.width/2&&keyG.x-elephantG.x<elephantG.width/2+keyG.width/2){
+     if (elephantG.x-keyG.x<elephantG.width/2+keyG.width/2&&keyG.x-elephantG.x<elephantG.width/2+keyG.width/2){
         
-        //elephantG.destroyEach();
-        //keyG.destroyEach();
-        //score=score+1;
+        elephantG.destroyEach();
+        keyG.destroyEach();
+        score=score+1;
         
-      //}
+      }
       
        drawSprites();
        text("Score:" + score, 1050, 50);
@@ -234,6 +234,14 @@ var cage=createSprite(115,920,20,20);
    
    
    key.lifetime=210;
+  }
+  //function scoreF(){
+     //if(score = 30){
+     //window.location.href = "level1Complete.html";
+
+   }
+
+   
    }
   }
 
