@@ -1,6 +1,6 @@
 var bg,gameState;
 
-gameState = start;
+gameState = "start";
 
 function preload()
 {
@@ -19,20 +19,10 @@ function setup() {
 
 
 function draw() {
-  
   background(0,250,0);
-
-
-  if(gameState === start){
-	
-
-
-var clickToStart=createSprite(1200/2,950/2,50,50);
-if(){
-
-}
-
- }
+  if(gameState === "start") {
+	var clickToStart=createSprite(1200/2,950/2,50,50);
+  }
   drawSprites();
   
 }
