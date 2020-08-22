@@ -1,5 +1,7 @@
 var bg,boy,giraffeG,lionG,elephantG,pandaG,keyG,cage,giraffe,panda,elephant,lion,key,boy1,key1,lion1,giraffe1,panda1,elephant1,cage1;
- function preload(){
+ 
+var ANIMAL_SCALE = 0.5;
+function preload(){
  bg_level1 = loadImage("bg_level1.png");
 
 boy1 = loadImage('boy.png');
@@ -18,7 +20,7 @@ bg.addImage(bg_level1);
 bg.scale=1.5;
 
 
-var score=0;
+ score=0;
 
 
 boy =  createSprite(1140,400,20,40);
@@ -103,6 +105,7 @@ function draw() {
         var cage=createSprite(150,970,20,20);
  
   cage.addImage(cage1);
+  cage.scale=ANIMAL_SCALE;
    pandaG.add(cage);
       cage.velocityY=-(5*score/25+5);
       cage.x=random(20,1130);
@@ -112,7 +115,7 @@ function draw() {
       var panda=createSprite(cage.x,950,20,20);
       
       panda.addImage(panda1);
-   
+      panda.scale=ANIMAL_SCALE;
    
       panda.velocityY=-(5*score/25+5);
       
@@ -130,6 +133,7 @@ function draw() {
 var cage=createSprite(115,950,20,20);
              
              cage.addImage(cage1);
+             cage.scale=ANIMAL_SCALE;
    elephantG.add(cage);
              cage.velocityY=-(5*score/25+5);
             cage.x=random(20,1130);
@@ -139,7 +143,7 @@ var cage=createSprite(115,950,20,20);
               var elephant=createSprite(cage.x,950,20,20);
      
      elephant.addImage(elephant1);
-   
+     elephant.scale=ANIMAL_SCALE;
    
       elephant.velocityY=-(5*score/25+5);
       
@@ -158,6 +162,7 @@ var cage=createSprite(115,950,20,20);
         var cage=createSprite(70,950,20,20);
     
       cage.addImage(cage1);
+      cage.scale=ANIMAL_SCALE;
   lionG.add(cage);
    
       cage.velocityY=-(5*score/25+5);
@@ -168,7 +173,7 @@ var cage=createSprite(115,950,20,20);
         var lion=createSprite(cage.x,950,20,20);
    
       lion.addImage(lion1);
-   
+      lion.scale=0.1;
    
       lion.velocityY=-(5*score/25+5);
       
@@ -187,6 +192,7 @@ var cage=createSprite(115,950,20,20);
         var cage=createSprite(70,950,20,20);
    
      cage.addImage(cage1);
+     cage.scale=ANIMAL_SCALE;
    giraffeG.add(cage);
      cage.velocityY=-(5*score/25+5);
      cage.x=random(20,1130);
@@ -196,7 +202,7 @@ var cage=createSprite(115,950,20,20);
     var giraffe=createSprite(cage.x,950,20,20);
 
       giraffe.addImage(giraffe1);
-   
+      giraffe.scale=ANIMAL_SCALE;
    
       giraffe.velocityY=-(5*score/25+5);
       
