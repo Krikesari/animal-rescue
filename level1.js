@@ -62,6 +62,8 @@ function draw() {
 
   createEdgeSprites();
 
+ 
+
   pandaF();
 
    elephantF();
@@ -93,9 +95,7 @@ function draw() {
   drawSprites();
   text("Score:" + score, 1050, 50);
 
-  if (score > 30) {
-    window.location.href = "level1Complete.html";
-  }
+  scoreF();
 }
 
 function isIntersecting(object1, object2) {
@@ -262,7 +262,7 @@ function keyF() {
 
 
 function scoreF() {
-  if (score = 30) {
+  if (score >= 30) {
     window.location.href = "level1Complete.html";
   }
 }
