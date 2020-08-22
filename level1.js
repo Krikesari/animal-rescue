@@ -57,7 +57,7 @@ function draw() {
     boy.y = GAME_HEIGHT - boyHeightHalf;
   }
  
-  console.log(noOfKeys);
+  //console.log(noOfKeys);
 
 
   createEdgeSprites();
@@ -70,7 +70,7 @@ function draw() {
 
   lionF();
 
-  // giraffeF();
+ giraffeF();
 
   keyF();
 
@@ -87,6 +87,11 @@ function draw() {
     }
     else if (!key.removed && !lionG.removed && isIntersecting(lionG, key)) {
       lionG.remove();
+      score += 1;
+      key.remove();
+    }
+    else if (!key.removed && !giraffeG.removed && isIntersecting(giraffeG, key)) {
+      giraffeG.remove();
       score += 1;
       key.remove();
     }
@@ -213,9 +218,11 @@ function giraffeF() {
 
     cage.addImage(cage1);
     cage.scale = ANIMAL_SCALE;
-    giraffeG.add(cage);
+   // giraffeG.add(cage);
     cage.velocityY = -(5 * score / 25 + 5);
     cage.x = random(20, 1000);
+    
+    giraffeG=cage;
 
     cage.lifetime = 900 / 5 + 10;
 
