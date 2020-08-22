@@ -28,19 +28,19 @@ function draw() {
 	var clickToStart = createSprite(1200/2,525,200,80);
 	clickToStart.visible = false;
 	if (mousePressedOver(clickToStart)) {
-		gameState = "BB";
+		gameState = "AA";
 		bg.visible = false;
 		clickToStart.visible = false;
 	}
   }
 
-  if (gameState === "BB") {
+  if (gameState === "AA") {
   	bgLevel1.visible = true;
   	var clickToStartLevel1 = createSprite(625,750,250,100);
 	clickToStartLevel1.visible = false;
 
   	if (mousePressedOver(clickToStartLevel1)) {
-  		window.location.href = "level1.html";
+		  window.location.href = "level1.html";
   	}
   }
   
