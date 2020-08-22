@@ -1,6 +1,6 @@
 var bg,boy,giraffeG,lionG,elephantG,pandaG,keyG,cage,giraffe,panda,elephant,lion,key,boy1,key1,lion1,giraffe1,panda1,elephant1,cage1;
  
-var ANIMAL_SCALE = 0.5;
+var ANIMAL_SCALE = 0.25;
 function preload(){
  bg_level1 = loadImage("bg_level1.png");
 
@@ -10,7 +10,7 @@ giraffe1 = loadImage('giraffe.png');
 panda1 = loadImage('panda.png');
 elephant1 = loadImage('elephant.png');
 cage1 = loadImage('cage.png');
-key11 = loadImage('key.png');
+key1= loadImage('key.png');
  }
  function setup(){
 
@@ -45,7 +45,8 @@ function draw() {
   background(0,250,0);
 
 
-    boy.Y=World.mouseY;
+    boy.y=World.mouseY;
+    
    
     createEdgeSprites();
   
@@ -59,13 +60,13 @@ function draw() {
     
    keyF();
                                              
-  // if (pandaG.x-keyG.x<pandaG.width/2+keyG.width/2&&keyG.x-pandaG.x<pandaG.width/2+keyG.width/2) {
+  if (pandaG.x-keyG.x<pandaG.width/2+keyG.width/2&&keyG.x-pandaG.x<pandaG.width/2+keyG.width/2) {
         
-    //pandaG.destroyEach();
-    //keyG.destroyEach();
-    //score=score+1;
+    pandaG.destroyEach();
+    keyG.destroyEach();
+    score=score+1;
     
-  //}
+  }
        
       //if (giraffeG.x-keyG.x<giraffeG.width/2+keyG.width/2&&keyG.x-giraffeG.x<giraffeG.width/2+keyG.width/2)
        // {
@@ -143,7 +144,7 @@ var cage=createSprite(115,950,20,20);
               var elephant=createSprite(cage.x,950,20,20);
      
      elephant.addImage(elephant1);
-     elephant.scale=ANIMAL_SCALE;
+     elephant.scale=ANIMAL_SCALE-0.05;
    
       elephant.velocityY=-(5*score/25+5);
       
@@ -173,7 +174,7 @@ var cage=createSprite(115,950,20,20);
         var lion=createSprite(cage.x,950,20,20);
    
       lion.addImage(lion1);
-      lion.scale=0.1;
+      lion.scale=ANIMAL_SCALE-0.1;                           ;
    
       lion.velocityY=-(5*score/25+5);
       
@@ -202,7 +203,7 @@ var cage=createSprite(115,950,20,20);
     var giraffe=createSprite(cage.x,950,20,20);
 
       giraffe.addImage(giraffe1);
-      giraffe.scale=ANIMAL_SCALE;
+      giraffe.scale=ANIMAL_SCALE-0.05;
    
       giraffe.velocityY=-(5*score/25+5);
       
@@ -217,10 +218,12 @@ var cage=createSprite(115,950,20,20);
  
   function keyF(){
     
-      if(keyDown('space')&&World.frameCount%20===0){
+      if(keyDown('space')&&World.frameCount%20===19){
      
-     var key=createSprite(380,200,10,10);
+      key=createSprite(boy.x,200,10,10);
    key.addImage(key1);
+
+   key.scale=ANIMAL_SCALE-0.1;
   keyG.add(key);
    
    key.velocityX=-6;
