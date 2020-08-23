@@ -125,11 +125,9 @@ function spawnObstacles() {
     obstacle.velocityX = -6;
     
     //generate random obstacles
-     rand = random(fire1);
-   obstacle.addImage(fire1);
-  //if(rand=2){
-        //obstacle.setAnimation(fire2);
-  //}
+     rand = random(1,3);
+   obstacle.addImage("fire"+"1");
+ 
     //assign scale and lifetime to the obstacle           
    obstacle.scale = 0.2;
   obstacle.lifetime = 470;
