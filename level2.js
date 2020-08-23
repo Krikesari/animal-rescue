@@ -1,7 +1,7 @@
 var play = 1;
 var end = 0;
 var gameState = play;
-var bg, bg_level2, kangaroo1, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, kangaroo, obstacle, invisibleGround, rand, count;
+var bg, bg_level2, kangaroo1, kangarooa, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, kangaroo, obstacle, invisibleGround, rand, count;
 var FIRE_IMAGES = [];
 
 function preload() {
@@ -29,11 +29,12 @@ function setup() {
 
   count = 0;
 
-  kangaroo = createSprite(300, 400, 20, 40);
-  kangaroo.addImage(kangaroo1);
-  kangaroo.scale = 0.3;
-  kangaroo.x = 200;
-  kangaroo.debug = true;
+  kangarooa = createSprite(300, 400, 20, 40);
+  kangarooa.addImage(kangaroo1);
+  kangarooa.scale = 0.3;
+  kangaroo = createSprite(300, 400, 150, 300);
+  kangaroo.visible=false;
+  kangaroo.x = 170;
 
   textFont("Georgia");
   textStyle(BOLD);
@@ -42,9 +43,6 @@ function setup() {
   //invisible Ground to support kangaroo
   invisibleGround = createSprite(1200 / 2, 775, 1200, 50);
   invisibleGround.visible = false;
-
-  //create Obstacle 
-  //obstacleG=createGroup;
 
   textSize(25);
   textFont('Algerian');
@@ -72,39 +70,30 @@ function draw() {
     }
 
     //jump when the space key is pressed
-    if (keyDown("space") && isIntersecting(invisibleGround, kangaroo)) {
+    if (keyDown("space") && isIntersecting(kangaroo,invisibleGround)) {
       //playSound("sound://category_jump/arcade_game_jump_1.mp3",false);
-      kangaroo.velocityY = -30;
+      kangaroo.velocityY = -40;
 
 
     }
 
     //add gravity
-    kangaroo.velocityY = kangaroo.velocityY + 0.8 + 0.7;
+    kangaroo.velocityY = kangaroo.velocityY + 1.6;
 
 
 
     //spawn obstacles
     spawnObstacles();
 
-    //if(ObstaclesGroup.isTouching(kangaroo)){
-    //gameState = END;
-    //}
+    if(isIntersecting(kangaroo, obstacle)){
+    gameState = END;
+    }
   }
 
   else if (gameState === END) {
     window.location.href = "level2fail.html";
 
-    //bg.x=200 ;
-    //bg.vecocityX=0;
-
-    ObstaclesGroup.setLifetimeEach(-1);
-    ObstaclesGroup.setVelocityXEach(0);
-
-    //var gameover=createSprite(230,140-70,20,20);
-    //gameover.addImage("gameOver");
-
-    kangaroo.velocityY = kangaroo.velocityY + 0.7;
+    kangaroo.y = kangaroo.y + 0.7;
 
   }
 
@@ -116,8 +105,25 @@ function draw() {
 
   drawSprites();
   text("Score: " + count, 1000, 50);
+  kangarooa.x=kangaroo.x;
+  kangarooa.y=kangaroo.y+45;
 }
+function isIntersecting(object1, object2) {
+  var o1x = object1.x;
+  var o1y = object1.y;
+  var o1w = object1.width * object1.scale / 2;
+  var o1h = object1.height * object1.scale / 2;
 
+  var o2x = object2.x;
+  var o2y = object2.y;
+  var o2w = object2.width * object2.scale / 2;
+  var o2h = object2.height * object2.scale / 2;
+
+  console.log(o1w + "," + o2w);
+
+  return abs(o2x - o1x) <= o1w + o2w &&
+      abs(o2y - o1y) <= o1h + o2h;
+}
 function spawnObstacles() {
 
 
@@ -143,20 +149,4 @@ function spawnObstacles() {
     //obstacle.setCollider("rectangle",0,0,150,150);
 
   }
-}
-function isIntersecting(object1, object2) {
-  var o1x = object1.x;
-  var o1y = object1.y;
-  var o1w = object1.width * object1.scale / 2;
-  var o1h = object1.height * object1.scale / 2;
-
-  var o2x = object2.x;
-  var o2y = object2.y;
-  var o2w = object2.width * object2.scale / 2;
-  var o2h = object2.height * object2.scale / 2;
-
-  console.log(o1w + "," + o2w);
-
-  return abs(o2x - o1x) <= o1w + o2w &&
-    abs(o2y - o1y) <= o1h + o2h;
 }
