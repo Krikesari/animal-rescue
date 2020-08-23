@@ -85,17 +85,10 @@ function draw() {
     //spawn obstacles
     spawnObstacles();
 
-    if(isIntersecting(kangaroo, obstacle)){
-    gameState = END;
-    }
+    
   }
 
-  else if (gameState === END) {
-    window.location.href = "level2fail.html";
-
-    kangaroo.y = kangaroo.y + 0.7;
-
-  }
+  last2();
 
   // from falling down
   kangaroo.collide(invisibleGround);
@@ -147,6 +140,17 @@ function spawnObstacles() {
     //ObstaclesGroup.add(obstacle);
 
     //obstacle.setCollider("rectangle",0,0,150,150);
+
+  }
+}
+function last2(){
+  if(isIntersecting(kangaroo, obstacle)){
+    gameState = END;
+    }
+  if (gameState === END) {
+    window.location.href = "level2fail.html";
+
+    kangaroo.y = kangaroo.y + 0.7;
 
   }
 }
