@@ -7,6 +7,7 @@
     bg_level2 = loadImage("bg_level2.jpg");
     kangaroo1 = loadImage('kangaroo.png');
     fire1 = loadImage('fire1.png');
+    fire1a = loadImage('fire1a.png');
     fire2 = loadImage('fire2.png');
     fire2a = loadImage('fire2a.png');
     fire3 = loadImage('fire3.png');
@@ -27,8 +28,9 @@
 
    kangaroo = createSprite(300, 400, 20, 40);
    kangaroo.addImage(kangaroo1);
-   kangaroo.scale = 0.2;
+   kangaroo.scale = 0.3;
    kangaroo.x = 200;
+    kangaroo.debug=true;
 
    textFont("Georgia");
    textStyle(BOLD);
@@ -69,7 +71,7 @@
      //jump when the space key is pressed
     if(keyDown("space") && isIntersecting(invisibleGround, kangaroo)){
      //playSound("sound://category_jump/arcade_game_jump_1.mp3",false);
-     kangaroo.velocityY = -28 ;
+     kangaroo.velocityY = -30 ;
   
       
     }
@@ -99,7 +101,7 @@
     //var gameover=createSprite(230,140-70,20,20);
     //gameover.addImage("gameOver");
     
-     kangaroo.velocityY = kangaroo.velocityY + 0.8+0.7;
+     kangaroo.velocityY = kangaroo.velocityY + 0.7;
     
   }
   
@@ -123,13 +125,13 @@ function spawnObstacles() {
     obstacle.velocityX = -6;
     
     //generate random obstacles
-     rand = random(1,3);
+     rand = random(fire1);
    obstacle.addImage(fire1);
   //if(rand=2){
         //obstacle.setAnimation(fire2);
   //}
     //assign scale and lifetime to the obstacle           
-   obstacle.scale = 0.3;
+   obstacle.scale = 0.2;
   obstacle.lifetime = 470;
     
     //obstacle.depth=kangaroo.depth;
