@@ -1,4 +1,4 @@
-var bg, boy, giraffeG, lionG, elephantG, pandaG, keyG, cage, giraffe, panda, elephant, lion, key, boy1, key1, lion1, score, giraffe1, panda1, elephant1, cage1,noOfKeys;
+var bg, boy, giraffeG, lionG, elephantG, pandaG, keyG, cage, giraffe, panda, elephant, lion, key, boy1, key1, lion1, score, giraffe1, panda1, elephant1, cage1,noOfKeys, time;
 
 
 var ANIMAL_SCALE = 0.25;
@@ -23,6 +23,7 @@ function setup() {
   bg.addImage(bg_level1);
   bg.scale = 1.5;
 
+  time=5;
 
   score = 0;
   noOfKeys=0;
@@ -96,10 +97,12 @@ function draw() {
       key.remove();
     }
   }
-                          
+  if(World.frameCount%60===0){
+    time=time-1;
+  }             
   drawSprites();
   text("Score:" + score, 1050, 50);
-
+  text("time:" + time, 50, 50);
   scoreF();
 }
 
@@ -269,6 +272,9 @@ function keyF() {
 
 
 function scoreF() {
+  if(time<=0&&score<30){
+    window.location.href = "level1fail.html";
+  }
   if (score >= 30) {
     window.location.href = "level1Complete.html";
   }
