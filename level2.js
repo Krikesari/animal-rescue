@@ -149,8 +149,8 @@ function last2(){
     }
   if (gameState === END) {
     window.location.href = "level2fail.html";
-
-    kangaroo.y = kangaroo.y + 0.7;
-
+  }
+  else if(score=>500){
+    window.location.href = "level2complete.html";
   }
 }
