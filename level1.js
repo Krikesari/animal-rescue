@@ -23,7 +23,7 @@ function setup() {
   bg.addImage(bg_level1);
   bg.scale = 1.5;
 
-  time=5;
+  time=60;
 
   score = 0;
   noOfKeys=0;
