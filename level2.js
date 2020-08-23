@@ -144,7 +144,7 @@ function spawnObstacles() {
   }
 }
 function last2(){
-  if(isIntersecting(kangaroo, obstacle)){
+  if(isIntersecting(obstacle,kangaroo)){
     gameState = END;
     }
   if (gameState === END) {
