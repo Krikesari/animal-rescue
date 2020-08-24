@@ -1,6 +1,4 @@
-var play = 1;
-var end = 0;
-var gameState = play;
+var gameState = "play";
 var bg, bg_level2, invisibleKangaroo1, kangaroo, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, invisibleKangaroo, obstacle, invisibleGround, rand, count;
 var FIRE_IMAGES = [];
 
@@ -16,6 +14,7 @@ function preload() {
   FIRE_IMAGES = [fire1, fire1a, fire2, fire2a, fire3];
 
 }
+
 function setup() {
 
   createCanvas(1200, 900);
@@ -33,7 +32,7 @@ function setup() {
   kangaroo.addImage(invisibleKangaroo1);
   kangaroo.scale = 0.3;
   invisibleKangaroo = createSprite(300, 400, 150, 300);
-  invisibleKangaroo.visible=false;
+  invisibleKangaroo.visible = false;
   invisibleKangaroo.x = 170;
 
   textFont("Georgia");
@@ -70,7 +69,7 @@ function draw() {
     }
 
     //jump when the space key is pressed
-    if (keyDown("space") && isIntersecting(invisibleKangaroo,invisibleGround)) {
+    if (keyDown("space") && isIntersecting(invisibleKangaroo, invisibleGround)) {
       //playSound("sound://category_jump/arcade_game_jump_1.mp3",false);
       invisibleKangaroo.velocityY = -40;
 
@@ -85,7 +84,7 @@ function draw() {
     //spawn obstacles
     spawnObstacles();
 
-    
+
   }
 
   last2();
@@ -98,8 +97,8 @@ function draw() {
 
   drawSprites();
   text("Score: " + count, 1000, 50);
-  kangaroo.x=invisibleKangaroo.x;
-  kangaroo.y=invisibleKangaroo.y+45;
+  kangaroo.x = invisibleKangaroo.x;
+  kangaroo.y = invisibleKangaroo.y + 45;
 }
 function isIntersecting(object1, object2) {
   var o1x = object1.x;
@@ -115,7 +114,7 @@ function isIntersecting(object1, object2) {
   console.log(o1w + "," + o2w);
 
   return abs(o2x - o1x) <= o1w + o2w &&
-      abs(o2y - o1y) <= o1h + o2h;
+    abs(o2y - o1y) <= o1h + o2h;
 }
 function spawnObstacles() {
 
@@ -143,14 +142,17 @@ function spawnObstacles() {
 
   }
 }
-function last2(){
-  if(isIntersecting(obstacle,invisibleKangaroo)&&score<500){
+function last2() {
+  if (obstacle === undefined) {
+    return;
+  }
+  if (isIntersecting(obstacle, invisibleKangaroo) && count < 500) {
     gameState = "END";
-    }
+  }
   if (gameState === "END") {
     window.location.href = "level2fail.html";
   }
-  else if(score>=500){
+  else if (count >= 500) {
     window.location.href = "level2complete.html";
   }
 }
