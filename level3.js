@@ -3,7 +3,7 @@ var bg, cow, cowWidthHalf, car1, car3, car4, car2, key, cow1, key1, car21, score
 
 
 var GAME_WIDTH = 1200;
-
+var ALL_OBSTACLES = [];
 
 function preload() {
   bg_level3 = loadImage("bg_level3.jpg");
@@ -45,9 +45,9 @@ function draw() {
   cow.x = World.mouseX;
   cowWidthHalf = cow.width * cow.scale / 2;
   if (cow.x - cowWidthHalf < 0) {
-    cow.x = cowWidthHalf;
+    cow.x = cowWidthHalf+70;
   } else if (cow.x + cowWidthHalf > GAME_WIDTH) {
-    cow.x = GAME_WIDTH - cowWidthHalf;
+    cow.x = GAME_WIDTH - cowWidthHalf-70;
   }
 
   car3F();
@@ -61,11 +61,30 @@ function draw() {
 
   if (World.frameCount % 60 === 0) {
     time = time - 1;
-    
+    if (time < 0) {
+      window.location.href = "level3complete.html";
+      return;
+    }
   }
 
   drawSprites();
   text("time:" + time, 50, 50);
+
+
+  var newObstacles = [];
+  for (var i in ALL_OBSTACLES) {
+    var obs = ALL_OBSTACLES[i];
+    if (obs.removed) {
+      continue;
+    }
+
+    newObstacles.push(obs);
+
+    if (isIntersecting(obs, cow)) {
+      window.location.href = "level3fail.html";
+      return;
+    }
+  }
 }
 
 
@@ -93,9 +112,10 @@ function car3F() {
     carC = createSprite(random(50, 1150), 0, 20, 20);
     carC.addImage(car3);
     carC.scale = 0.25;
-    carC.velocityY = +(5 * score / 25 + 5);
+    carC.velocityY = 5;
     carC.lifetime = 900 / 5 + 10;
 
+    ALL_OBSTACLES.push(carC);
 
   }
 }
@@ -108,10 +128,10 @@ function car4F() {
     carD = createSprite(random(50, 1150), 0, 20, 20);
     carD.addImage(car4);
     carD.scale = 0.2;
-    carD.velocityY = +(5 * score / 25 + 11);
+    carD.velocityY = 11;
     carD.lifetime = 900 / 5 + 10;
 
-
+    ALL_OBSTACLES.push(carD);
   }
 }
 
@@ -123,10 +143,10 @@ function car2F() {
     carB = createSprite(random(50, 1150), 0, 20, 20);
     carB.addImage(car2);
     carB.scale = 0.25;
-    carB.velocityY = +(5 * score / 25 + 9);
+    carB.velocityY = 9;
     carB.lifetime = 900 / 5 + 10;
 
-
+    ALL_OBSTACLES.push(carB);
   }
 
 }
@@ -137,16 +157,10 @@ function car1F() {
     carA = createSprite(random(50, 1150), 0, 20, 20);
     carA.addImage(car1);
     carA.scale = 0.1;
-    carA.velocityY = +(5 * score / 25 + 10);
+    carA.velocityY = +(10);
     carA.lifetime = 900 / 5 + 10 + 50;
+
+    ALL_OBSTACLES.push(carA);
 
   }
 }
-  //createEdgeSprites();
-
-  //if (isIntersecting(carA, cow) || isIntersecting(carB, cow) || isIntersecting(carC, cow) || isIntersecting(carD, cow) && time > 0) {
-  //window.location.href = "level3fail.html";
-  //}
-  //if (time <= 0) {
-  //window.location.href = "level3complete.html";
-  //
