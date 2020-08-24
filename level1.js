@@ -117,8 +117,6 @@ function isIntersecting(object1, object2) {
   var o2w = object2.width * object2.scale / 2;
   var o2h = object2.height * object2.scale / 2;
 
-  console.log(o1w + "," + o2w);
-
   return abs(o2x - o1x) <= o1w + o2w &&
       abs(o2y - o1y) <= o1h + o2h;
 }

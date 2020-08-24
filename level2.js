@@ -1,6 +1,7 @@
 var gameState = "play";
 var bg, bg_level2, invisibleKangaroo1, kangaroo, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, invisibleKangaroo, obstacle, invisibleGround, rand, count;
 var FIRE_IMAGES = [];
+var ALL_OBSTACLES = [];
 
 function preload() {
   bg_level2 = loadImage("bg_level2.jpg");
@@ -111,15 +112,11 @@ function isIntersecting(object1, object2) {
   var o2w = object2.width * object2.scale / 2;
   var o2h = object2.height * object2.scale / 2;
 
-  console.log(o1w + "," + o2w);
-
   return abs(o2x - o1x) <= o1w + o2w &&
     abs(o2y - o1y) <= o1h + o2h;
 }
+
 function spawnObstacles() {
-
-
-
 
   if (World.frameCount % 80 === 0) {
     obstacle = createSprite(1200, invisibleGround.y - 90, 10, 40);
@@ -133,6 +130,8 @@ function spawnObstacles() {
     obstacle.scale = 0.2;
     obstacle.lifetime = 470;
 
+    ALL_OBSTACLES.push(obstacle);
+
     //obstacle.depth=invisibleKangaroo.depth;
     //invisibleKangaroo.depth=invisibleKangaroo.depth+1;
     //add each obstacle to the group
@@ -142,13 +141,31 @@ function spawnObstacles() {
 
   }
 }
+
 function last2() {
   if (obstacle === undefined) {
     return;
   }
-  if (isIntersecting(obstacle, invisibleKangaroo) && count < 500) {
-    gameState = "END";
+
+  if (count < 500) {
+    var newObstacles = [];
+    for (var i in ALL_OBSTACLES) {
+      var obs = ALL_OBSTACLES[i];
+      if (obs.removed) {
+        continue;
+      }
+
+      newObstacles.push(obs);
+
+      if (isIntersecting(obs, kangaroo)) {
+        gameState = "END";
+        break;
+      }
+    }
   }
+
+  ALL_OBSTACLES = newObstacles;
+
   if (gameState === "END") {
     window.location.href = "level2fail.html";
   }
