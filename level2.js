@@ -144,13 +144,13 @@ function spawnObstacles() {
   }
 }
 function last2(){
-  if(isIntersecting(obstacle,invisibleKangaroo)){
+  if(isIntersecting(obstacle,invisibleKangaroo)&&score<500){
     gameState = "END";
     }
   if (gameState === "END") {
     window.location.href = "level2fail.html";
   }
-  else if(score=>500){
+  else if(score>=500){
     window.location.href = "level2complete.html";
   }
 }
