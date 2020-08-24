@@ -32,7 +32,7 @@ function setup() {
   kangaroo = createSprite(300, 400, 20, 40);
   kangaroo.addImage(invisibleKangaroo1);
   kangaroo.scale = 0.3;
-  invisibleKangaroo = createSprite(300, 400, 150, 300);
+  invisibleKangaroo = createSprite(250, 300, 150, 300);
   invisibleKangaroo.visible = false;
   invisibleKangaroo.x = 170;
 
@@ -120,7 +120,7 @@ function spawnObstacles() {
 
   if (World.frameCount % 80 === 0) {
     obstacle = createSprite(1200, invisibleGround.y - 90, 10, 40);
-    obstacle.velocityX = -6;
+    obstacle.velocityX = -10;
 
     //generate random obstacles
     var rand = Math.floor(Math.random() * FIRE_IMAGES.length)

@@ -1,6 +1,6 @@
 var bg;
 var gameState = "level1fail";
-var level1fail,bglevel1;
+var bglevel1fail,bglevel1;
 
 function preload() {
 	bglevel1fail = loadImage("level1fail.png");
@@ -35,11 +35,10 @@ function draw() {
   
     if (gameState === "AA") {
         bglevel1.visible = true;
-        var clickToStartLevel1 = createSprite(625,750,250,100);
+        var clickToStartLevel1 = createSprite(625,220,250,100);
 	      clickToStartLevel1.visible = false;
-
-  	  if (mousePressedOver(clickToStartLevel1)) {
-		  window.location.href = "level1.html";
+          if (mousePressedOver(clickToStartLevel1)) {
+            window.location.href = "level1.html";
         }
     }
     drawSprites();

@@ -15,7 +15,7 @@ function setup() {
 	bg = createSprite(600, 950/2, 1200,950);
 	bg.addImage(animalRescue);
 
-	bgLevel1 = createSprite(600, 950/2, 1200,950);
+	bgLevel1 = createSprite(600, 950/2, 1200,900);
   	bgLevel1.addImage(level1Bg);
   	bgLevel1.visible = false;
 }
@@ -36,7 +36,7 @@ function draw() {
 
   if (gameState === "AA") {
   	bgLevel1.visible = true;
-  	var clickToStartLevel1 = createSprite(625,750,250,100);
+  	var clickToStartLevel1 = createSprite(625,220,250,100);
 	clickToStartLevel1.visible = false;
 
   	if (mousePressedOver(clickToStartLevel1)) {

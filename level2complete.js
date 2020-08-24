@@ -1,46 +1,47 @@
 var bg;
-var gameState = "level2complete";
-var bglevel3;
+var gameState = "level1complete";
+var bglevel2;
 
 function preload() {
-	bglevel2complete = loadImage("level2complete.png");
-	bglevel2complete.scale = 0.9;
+	bglevel1complete = loadImage("level2complete.png");
+	bglevel1complete.scale = 0.9;
 
-	level3Bg = loadImage("level3.png");
-	level3Bg.scale = 0.9;
+	level2Bg = loadImage("level3.png");
+	level2Bg.scale = 0.9;
 }
 
 function setup() {
 	createCanvas(1200, 900);
 	bg = createSprite(600, 900/2, 1200,900);
-	bg.addImage(bglevel2complete);
+	bg.addImage(bglevel1complete);
 
-	bglevel3 = createSprite(600, 900/2, 1200,900);
-  	bglevel3.addImage(level3Bg);
-  	bglevel3.visible = false;
+	bglevel2 = createSprite(600, 900/2, 1200,900);
+  	bglevel2.addImage(level2Bg);
+  	bglevel2.visible = false;
 }
 
 function draw() {
     background(0,250,0);
     
-    if (gameState === "leve2complete") {
-      var startlevel3 = createSprite(620,630,280,110);
-      startlevel3.visible = false;
-      if (mousePressedOver(startlevel3)) {
-          gameState = "CC";
+    if (gameState === "level1complete") {
+      var startlevel2 = createSprite(620,630,280,110);
+      startlevel2.visible = false;
+      if (mousePressedOver(startlevel2)) {
+          gameState = "BB";
           bg.visible = false;
-          startlevel3.visible = false;
+          startlevel2.visible = false;
       }
     }
   
-    if (gameState === "CC") {
-        bglevel3.visible = true;
-        var clickToStartLevel3 = createSprite(625,700,230,80);
-        clickToStartLevel3.visible = false;
+    if (gameState === "BB") {
+        bglevel2.visible = true;
+        var clickToStartLevel2 = createSprite(625,220,230,80);
+        clickToStartLevel2.visible = false;
   
-        if (mousePressedOver(clickToStartLevel3)) {
+        if (mousePressedOver(clickToStartLevel2)) {
             window.location.href = "level3.html";
         }
     }
     drawSprites();
 }
+

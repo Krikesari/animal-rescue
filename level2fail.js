@@ -4,7 +4,7 @@ var level2fail,bglevel2;
 
 function preload() {
 	bglevel2fail = loadImage("level2fail.png");
-	bglevel1fail.scale = 0.9;
+	bglevel2fail.scale = 0.9;
 
 	level2Bg = loadImage("level2.png");
 	level2Bg.scale = 0.9;
@@ -27,15 +27,15 @@ function draw() {
       var level2retry = createSprite(600,620,300,150);
       level2retry.visible = false;
       if (mousePressedOver(level2retry)) {
-          gameState = "BB";
+          gameState = "AA";
           bg.visible = false;
           level2retry.visible = false;
       }
     }
   
-    if (gameState === "BB") {
+    if (gameState === "AA") {
         bglevel2.visible = true;
-        var clickToStartLevel2 = createSprite(625,750,250,100);
+        var clickToStartLevel2 = createSprite(625,220,250,100);
 	      clickToStartLevel2.visible = false;
 
   	  if (mousePressedOver(clickToStartLevel2)) {
