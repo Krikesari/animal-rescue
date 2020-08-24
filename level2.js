@@ -6,7 +6,7 @@ var FIRE_IMAGES = [];
 
 function preload() {
   bg_level2 = loadImage("bg_level2.jpg");
-  invisibleKangaroo1 = loadImage('invisibleKangaroo.png');
+  invisibleKangaroo1 = loadImage('kangaroo.png');
   fire1 = loadImage('fire1.png');
   fire1a = loadImage('fire1a.png');
   fire2 = loadImage('fire2.png');
@@ -57,7 +57,7 @@ function draw() {
   //console.log(count);
 
 
-  if (gameState === play) {
+  if (gameState === "play") {
 
     //scoring
     count = Math.round(World.frameCount / 4);
