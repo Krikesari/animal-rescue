@@ -1,9 +1,9 @@
-var bg, cow, cowWidthHalf, car1, car3, car4, car2, key, cow1, key1, car21, score, carA, carB, carC, carD, noOfKeys, time, car;
+var bg, cow, cowWidthHalf, car1, car3, car4, car2, key, cow1, key1, car21, score, carA, carB, carC, carD, time, car;
 
 
-var ANIMAL_SCALE = 0.25;
+
 var GAME_WIDTH = 1200;
-var ALL_KEYS = [];
+
 
 function preload() {
   bg_level3 = loadImage("bg_level3.jpg");
@@ -24,9 +24,6 @@ function setup() {
 
   time = 60;
 
-  score = 0;
-  noOfKeys = 0;
-
   cow = createSprite(600, 825, 20, 40);
   cow.addImage(cow1);
   cow.scale = 0.75;
@@ -36,11 +33,7 @@ function setup() {
   textFont('Algerian');
   fill("yellow");
 
-  car1G = createGroup();
-  car2G = createGroup();
-  car4G = createGroup();
-  car3G = createGroup();
-  keyG = createGroup();
+
 
 }
 
@@ -58,104 +51,105 @@ function draw() {
   }
 
 
-  createEdgeSprites();
-
-  if (isIntersecting(carA, cow) || isIntersecting(carB, cow) || isIntersecting(carC, cow) || isIntersecting(carD, cow) && time > 0) {
-    window.location.href = "level3fail.html";
-  }
-  if (time <= 0) {
-    window.location.href = "level3complete.html";
-  }
-
+  
 
   if (World.frameCount % 60 === 0) {
-    time = time - 1;
-  }
-  drawSprites();
+   time = time - 1;
+   
+   drawSprites();
 
-  text("time:" + time, 50, 50);
-
-}
-
-function isIntersecting(object1, object2) {
-  var o1x = object1.x;
-  var o1y = object1.y;
-  var o1w = object1.width * object1.scale / 2;
-  var o1h = object1.height * object1.scale / 2;
-
-  var o2x = object2.x;
-  var o2y = object2.y;
-  var o2w = object2.width * object2.scale / 2;
-  var o2h = object2.height * object2.scale / 2;
-
-  return abs(o2x - o1x) <= o1w + o2w &&
-    abs(o2y - o1y) <= o1h + o2h;
-}
-
-car3F();
-
-car4F();
-
-car2F();
-
-car1F();
-
-
-function car3F() {
-
-
-  if (World.frameCount % 80 === 0) {
-
-    carC = createSprite(random(50, 1150), 0, 20, 20);
-    carC.addImage(car3);
-    carC.scale = 0.25;
-    carC.velocityY = +(5 * score / 25 + 5);
-    carC.lifetime = 900 / 5 + 10;
-
-
-  }
-}
-
-function car4F() {
-
-
-  if (World.frameCount % 80 === 60) {
-
-    carD = createSprite(random(50, 1150), 0, 20, 20);
-    carD.addImage(car4);
-    carD.scale = 0.2;
-    carD.velocityY = +(5 * score / 25 + 11);
-    carD.lifetime = 900 / 5 + 10;
-
-
-  }
-}
-
-function car2F() {
-
-
-  if (World.frameCount % 80 === 40) {
-
-    carB = createSprite(random(50, 1150), 0, 20, 20);
-    carB.addImage(car2);
-    carB.scale = 0.25;
-    carB.velocityY = +(5 * score / 25 + 9);
-    carB.lifetime = 900 / 5 + 10;
-
+    text("time:" + time, 50, 50);
 
   }
 
-}
-function car1F() {
+  function isIntersecting(object1, object2) {
+    var o1x = object1.x;
+    var o1y = object1.y;
+    var o1w = object1.width * object1.scale / 2;
+    var o1h = object1.height * object1.scale / 2;
+
+    var o2x = object2.x;
+    var o2y = object2.y;
+    var o2w = object2.width * object2.scale / 2;
+    var o2h = object2.height * object2.scale / 2;
+
+    return abs(o2x - o1x) <= o1w + o2w &&
+      abs(o2y - o1y) <= o1h + o2h;
+  }
+
+  car3F();
+
+  car4F();
+
+  car2F();
+
+  car1F();
 
 
-  if (World.frameCount % 80 === 20) {
-    carA = createSprite(random(50, 1150), 0, 20, 20);
-    carA.addImage(car1);
-    carA.scale = 0.1;
-    carA.velocityY = +(5 * score / 25 + 10);
-    carA.lifetime = 900 / 5 + 10 + 50;
+  function car3F() {
+
+
+    if (World.frameCount % 80 === 5) {
+
+      carC = createSprite(random(50, 1150), 0, 20, 20);
+      carC.addImage(car3);
+      carC.scale = 0.25;
+      carC.velocityY = +(5 * score / 25 + 5);
+      carC.lifetime = 900 / 5 + 10;
+
+
+    }
+  }
+
+  function car4F() {
+
+
+    if (World.frameCount % 80 === 60) {
+
+      carD = createSprite(random(50, 1150), 0, 20, 20);
+      carD.addImage(car4);
+      carD.scale = 0.2;
+      carD.velocityY = +(5 * score / 25 + 11);
+      carD.lifetime = 900 / 5 + 10;
+
+
+    }
+  }
+
+  function car2F() {
+
+
+    if (World.frameCount % 80 === 40) {
+
+      carB = createSprite(random(50, 1150), 0, 20, 20);
+      carB.addImage(car2);
+      carB.scale = 0.25;
+      carB.velocityY = +(5 * score / 25 + 9);
+      carB.lifetime = 900 / 5 + 10;
+
+
+    }
 
   }
-}
+  function car1F() {
 
+
+    if (World.frameCount % 80 === 20) {
+      carA = createSprite(random(50, 1150), 0, 20, 20);
+      carA.addImage(car1);
+      carA.scale = 0.1;
+      carA.velocityY = +(5 * score / 25 + 10);
+      carA.lifetime = 900 / 5 + 10 + 50;
+
+    }
+  }
+  //createEdgeSprites();
+
+  //if (isIntersecting(carA, cow) || isIntersecting(carB, cow) || isIntersecting(carC, cow) || isIntersecting(carD, cow) && time > 0) {
+  //window.location.href = "level3fail.html";
+  //}
+  //if (time <= 0) {
+  //window.location.href = "level3complete.html";
+  //}
+
+}
