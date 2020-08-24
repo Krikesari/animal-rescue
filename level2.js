@@ -1,12 +1,12 @@
 var play = 1;
 var end = 0;
 var gameState = play;
-var bg, bg_level2, kangaroo1, kangarooa, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, kangaroo, obstacle, invisibleGround, rand, count;
+var bg, bg_level2, invisibleKangaroo1, kangaroo, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, invisibleKangaroo, obstacle, invisibleGround, rand, count;
 var FIRE_IMAGES = [];
 
 function preload() {
   bg_level2 = loadImage("bg_level2.jpg");
-  kangaroo1 = loadImage('kangaroo.png');
+  invisibleKangaroo1 = loadImage('invisibleKangaroo.png');
   fire1 = loadImage('fire1.png');
   fire1a = loadImage('fire1a.png');
   fire2 = loadImage('fire2.png');
@@ -29,18 +29,18 @@ function setup() {
 
   count = 0;
 
-  kangarooa = createSprite(300, 400, 20, 40);
-  kangarooa.addImage(kangaroo1);
-  kangarooa.scale = 0.3;
-  kangaroo = createSprite(300, 400, 150, 300);
-  kangaroo.visible=false;
-  kangaroo.x = 170;
+  kangaroo = createSprite(300, 400, 20, 40);
+  kangaroo.addImage(invisibleKangaroo1);
+  kangaroo.scale = 0.3;
+  invisibleKangaroo = createSprite(300, 400, 150, 300);
+  invisibleKangaroo.visible=false;
+  invisibleKangaroo.x = 170;
 
   textFont("Georgia");
   textStyle(BOLD);
   fill('white');
 
-  //invisible Ground to support kangaroo
+  //invisible Ground to support invisibleKangaroo
   invisibleGround = createSprite(1200 / 2, 775, 1200, 50);
   invisibleGround.visible = false;
 
@@ -70,15 +70,15 @@ function draw() {
     }
 
     //jump when the space key is pressed
-    if (keyDown("space") && isIntersecting(kangaroo,invisibleGround)) {
+    if (keyDown("space") && isIntersecting(invisibleKangaroo,invisibleGround)) {
       //playSound("sound://category_jump/arcade_game_jump_1.mp3",false);
-      kangaroo.velocityY = -40;
+      invisibleKangaroo.velocityY = -40;
 
 
     }
 
     //add gravity
-    kangaroo.velocityY = kangaroo.velocityY + 1.6;
+    invisibleKangaroo.velocityY = invisibleKangaroo.velocityY + 1.6;
 
 
 
@@ -91,15 +91,15 @@ function draw() {
   last2();
 
   // from falling down
-  kangaroo.collide(invisibleGround);
+  invisibleKangaroo.collide(invisibleGround);
 
   //display score
 
 
   drawSprites();
   text("Score: " + count, 1000, 50);
-  kangarooa.x=kangaroo.x;
-  kangarooa.y=kangaroo.y+45;
+  kangaroo.x=invisibleKangaroo.x;
+  kangaroo.y=invisibleKangaroo.y+45;
 }
 function isIntersecting(object1, object2) {
   var o1x = object1.x;
@@ -134,8 +134,8 @@ function spawnObstacles() {
     obstacle.scale = 0.2;
     obstacle.lifetime = 470;
 
-    //obstacle.depth=kangaroo.depth;
-    //kangaroo.depth=kangaroo.depth+1;
+    //obstacle.depth=invisibleKangaroo.depth;
+    //invisibleKangaroo.depth=invisibleKangaroo.depth+1;
     //add each obstacle to the group
     //ObstaclesGroup.add(obstacle);
 
@@ -144,10 +144,10 @@ function spawnObstacles() {
   }
 }
 function last2(){
-  if(isIntersecting(obstacle,kangaroo)){
-    gameState = END;
+  if(isIntersecting(obstacle,invisibleKangaroo)){
+    gameState = "END";
     }
-  if (gameState === END) {
+  if (gameState === "END") {
     window.location.href = "level2fail.html";
   }
   else if(score=>500){
