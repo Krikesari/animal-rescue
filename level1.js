@@ -1,5 +1,5 @@
 var bg, boy, giraffeG, lionG, elephantG, pandaG, keyG, cage, giraffe, panda, elephant, lion, key, boy1, key1, lion1, score, giraffe1, panda1, elephant1, cage1,noOfKeys, time;
-
+var keySound, keyS;
 
 var ANIMAL_SCALE = 0.25;
 var GAME_HEIGHT = 900;
@@ -15,6 +15,7 @@ function preload() {
   elephant1 = loadImage('elephant.png');
   cage1 = loadImage('cage.png');
   key1 = loadImage('key.png');
+ //               keySound = loadSound("key.mp3");
 }
 function setup() {
 
@@ -249,6 +250,8 @@ function keyF() {
 
     key = createSprite(boy.x, 200, 10, 10);
     key.addImage(key1);
+    //keySound.play();
+    //keysound.setVolume(1);
 
     key.scale = ANIMAL_SCALE - 0.1;
     keyG.add(key);
