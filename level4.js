@@ -1,11 +1,12 @@
 var bg, time, table;
 var wallHtop, wallHbot, wallH13, wallH16, wallH20, wallH25, wallH27, wallH31, wallH33, wallH40, wallH42, wallH44, wallH49, wallH51, wallH56, wallH60, wallH65, wall69, wallH72, wallH76, wallH81, wallh84, wallH88, wallH93, wallH98;
 var wallVlefta, wallVleftb, wallVrighta, wallVrightb, wallV11, wallV41, wallV61, wallV91, wallV12, wallV72, wallV13, wallV43, wallV63, wallV83, wallV14, wallV54, wallV05, wallV45, wallV16, wallV86, wallV27, wallV67, wallV87, wallV18, wallV38, wallV58, wallV78, wallV09, wallV39, wallV69;
-
+var banana, monkeyImage, monkeyvisible, bananaImage, monkey
 
 
 function preload() {
-    bg_level4 = loadImage("bg_level4.jpg");
+    bg_level4 = loadImage("bg_level4.png");
+
     table1 = loadImage("table.png");
 
     wallH = loadImage('wallH.png');
@@ -18,23 +19,38 @@ function preload() {
     wallV3 = loadImage('wallV3.png');
     wallV2 = loadImage('wallV2.png');
     wallV1 = loadImage('wallV1.png');
-    //monkey = loadImage('monkey.png');
-    //banana = loadImage('banana.png');
+    monkeyImage = loadImage('monk.png');
+    bananaImage = loadImage('banana.png');
     //poacher = loadImage('poacher.png');
 
 }
 function setup() {
 
     createCanvas(1200, 900);
-    bg = createSprite(1200 / 2, 425, 1200, 900);
+    bg = createSprite(1200 / 2, 450, 1200, 900);
     bg.addImage(bg_level4);
-    bg.scale = 2.0;
+    bg.scale = 1.3;
+
+
 
     time = 60;
+    table = createSprite(630, 450, 1200, 900);
+    table.addImage(table1);
+    table.scale = 0.80;
+    table.visible = false;
 
-    //table = createSprite(630, 450, 1200, 900);
-    //table.addImage(table1);
-    //table.scale = 0.80;
+    monkeyvisible = createSprite(200, 490, 40, 40);
+    monkeyvisible.addImage(monkeyImage);
+    monkeyvisible.scale = 0.13;
+    // monkeyvisible.debug = true;
+
+    monkey = createSprite(200, 490, 370, 370);
+    monkey.scale = 0.13;
+    monkey.visible = false;
+
+    banana = createSprite(1050, 410, 40, 40);
+    banana.addImage(bananaImage);
+    banana.scale = 0.12;
 
     wallHtop = createSprite(625, 20, 1200, 900);
     wallHtop.addImage(wallH);
@@ -217,10 +233,17 @@ function setup() {
 function draw() {
 
     background(0, 250, 0);
-
+    if (World.frameCount % 60 === 0) {
+        time = time - 1;
+    }
+    if (time <= 0) {
+        window.location.href = "level4fail.html";
+    }
     drawSprites();
-  text("time:" + time, 15, 50);
+    text("time:" + time, 15, 50);
 
+    monkeyvisible.x = monkey.x;
+    monkeyvisible.y = monkey.y;
 }
 
 function isIntersecting(object1, object2) {
@@ -228,13 +251,12 @@ function isIntersecting(object1, object2) {
     var o1y = object1.y;
     var o1w = object1.width * object1.scale / 2;
     var o1h = object1.height * object1.scale / 2;
-  
+
     var o2x = object2.x;
     var o2y = object2.y;
     var o2w = object2.width * object2.scale / 2;
     var o2h = object2.height * object2.scale / 2;
-  
+
     return abs(o2x - o1x) <= o1w + o2w &&
-      abs(o2y - o1y) <= o1h + o2h;
-  }
-  
+        abs(o2y - o1y) <= o1h + o2h;
+}
