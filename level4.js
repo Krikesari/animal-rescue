@@ -57,9 +57,13 @@ function setup() {
     poacher1 = createSprite(500, 837, 40, 40);
     poacher1.addImage(poacher1Image);
     poacher1.scale = 0.14;
+    poacher1.velocityX = -6;
+
     poacher2 = createSprite(500, 235, 40, 40);
     poacher2.addImage(poacher1Image);
     poacher2.scale = 0.14;
+    poacher1.velocityX = -6;
+    
     poacher3 = createSprite(770, 670, 40, 40);
     poacher3.addImage(poacher2hImage);
     poacher3.scale = 0.25;
@@ -257,10 +261,13 @@ function setup() {
 function draw() {
 
     background(0, 250, 0);
+
+    poacher1.bounceOff(wallV83);
+    poacher1.bounceOff(wallV87);
     if (World.frameCount % 60 === 0) {
         time = time - 1;
     }
-    if (time <= 0) {
+    if (time <= 0 || isIntersecting(poacher1, monkey) || isIntersecting(poacher2, monkey) || isIntersecting(poacher3, monkey) || isIntersecting(poacher4, monkey) || isIntersecting(poacher5, monkey) || isIntersecting(poacher6, monkey)) {
         window.location.href = "level4fail.html";
     }
     drawSprites();
