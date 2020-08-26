@@ -1,7 +1,7 @@
 var bg, time, table;
 var wallHtop, wallHbot, wallH13, wallH16, wallH20, wallH25, wallH27, wallH31, wallH33, wallH40, wallH42, wallH44, wallH49, wallH51, wallH56, wallH60, wallH65, wall69, wallH72, wallH76, wallH81, wallh84, wallH88, wallH93, wallH98;
 var wallVlefta, wallVleftb, wallVrighta, wallVrightb, wallV11, wallV41, wallV61, wallV91, wallV12, wallV72, wallV13, wallV43, wallV63, wallV83, wallV14, wallV54, wallV05, wallV45, wallV16, wallV86, wallV27, wallV67, wallV87, wallV18, wallV38, wallV58, wallV78, wallV09, wallV39, wallV69;
-var banana, monkeyImage, monkeyvisible, bananaImage, monkey
+var banana, monkeyImage, monkeyvisible, bananaImage, monkey, poacher1, poacher2, poacher3, poacher4, poacher5, poacher6, poacher1Image, poacher2hImage, poacher2vImage;
 
 
 function preload() {
@@ -21,7 +21,9 @@ function preload() {
     wallV1 = loadImage('wallV1.png');
     monkeyImage = loadImage('monk.png');
     bananaImage = loadImage('banana.png');
-    //poacher = loadImage('poacher.png');
+    poacher1Image = loadImage('poacher1.png');
+    poacher2vImage = loadImage('poacher2v.png');
+    poacher2hImage = loadImage('poacher2h.png');
 
 }
 function setup() {
@@ -51,6 +53,28 @@ function setup() {
     banana = createSprite(1050, 410, 40, 40);
     banana.addImage(bananaImage);
     banana.scale = 0.12;
+
+    poacher1 = createSprite(500, 837, 40, 40);
+    poacher1.addImage(poacher1Image);
+    poacher1.scale = 0.14;
+    poacher2 = createSprite(500, 235, 40, 40);
+    poacher2.addImage(poacher1Image);
+    poacher2.scale = 0.14;
+    poacher3 = createSprite(770, 670, 40, 40);
+    poacher3.addImage(poacher2hImage);
+    poacher3.scale = 0.25;
+    poacher4 = createSprite(410, 310, 40, 40);
+    poacher4.addImage(poacher2vImage);
+    poacher4.scale = 0.25;
+    poacher6 = createSprite(860, 230, 40, 40);
+    poacher6.addImage(poacher2vImage);
+    poacher6.scale = 0.25;
+    poacher5 = createSprite(670, 60, 40, 40);
+    poacher5.addImage(poacher1Image);
+    poacher5.scale = 0.13;
+
+
+
 
     wallHtop = createSprite(625, 20, 1200, 900);
     wallHtop.addImage(wallH);
