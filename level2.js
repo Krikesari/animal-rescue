@@ -1,5 +1,5 @@
 var gameState = "play";
-var bg, bg_level2, invisibleKangaroo1, kangaroo, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, invisibleKangaroo, obstacle, invisibleGround, rand, count;
+var bg, bg_level2, invisibleKangaroo1, kangaroo, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, invisibleKangaroo, obstacle, invisibleGround, rand, jumpSound, count;
 var FIRE_IMAGES = [];
 var ALL_OBSTACLES = [];
 
@@ -11,7 +11,7 @@ function preload() {
   fire2 = loadImage('fire2.png');
   fire2a = loadImage('fire2a.png');
   fire3 = loadImage('fire3.png');
-
+  jumpSound = loadSound("jump.mp3");
   FIRE_IMAGES = [fire1, fire1a, fire2, fire2a, fire3];
 
 }
@@ -71,7 +71,8 @@ function draw() {
 
     //jump when the space key is pressed
     if (keyDown("space") && isIntersecting(invisibleKangaroo, invisibleGround)) {
-      //playSound("sound://category_jump/arcade_game_jump_1.mp3",false);
+      jumpSound.play();
+    //jumpsound.setVolume(1);
       invisibleKangaroo.velocityY = -40;
 
 

@@ -1,5 +1,5 @@
-var bg, boy, giraffeG, lionG, elephantG, pandaG, keyG, cage, giraffe, panda, elephant, lion, key, boy1, key1, lion1, score, giraffe1, panda1, elephant1, cage1,noOfKeys, time;
-var keySound, keyS;
+var bg, boy, giraffeG, lionG, elephantG, pandaG, keyG, cage, giraffe, panda, elephant, lion, key, boy1, key1, lion1, score, giraffe1, panda1, elephant1, cage1, noOfKeys, time;
+var keySound, cagesound, gameoversound, keyS;
 
 var ANIMAL_SCALE = 0.25;
 var GAME_HEIGHT = 900;
@@ -15,7 +15,8 @@ function preload() {
   elephant1 = loadImage('elephant.png');
   cage1 = loadImage('cage.png');
   key1 = loadImage('key.png');
-  //keySound = loadSound("key.mp3");
+  keySound = loadSound("key.mp3");
+  cageSound = loadSound("cage.mp3");
 }
 function setup() {
 
@@ -24,10 +25,10 @@ function setup() {
   bg.addImage(bg_level1);
   bg.scale = 1.5;
 
-  time=60;
+  time = 60;
 
   score = 0;
-  noOfKeys=0;
+  noOfKeys = 0;
 
   boy = createSprite(1140, 400, 20, 40);
   boy.addImage(boy1);
@@ -58,21 +59,21 @@ function draw() {
   } else if (boy.y + boyHeightHalf > GAME_HEIGHT) {
     boy.y = GAME_HEIGHT - boyHeightHalf;
   }
- 
+
   //console.log(noOfKeys);
 
 
   createEdgeSprites();
 
- 
+
 
   pandaF();
 
-   elephantF();
+  elephantF();
 
   lionF();
 
- giraffeF();
+  giraffeF();
 
   keyF();
 
@@ -82,25 +83,34 @@ function draw() {
       pandaG.remove();
       score += 1;
       key.remove();
-    } else if (!key.removed && !elephantG.removed && isIntersecting(elephantG, key)) {
+      cageSound.play();
+      //cagesound.setVolume(1);
+    }
+    else if (!key.removed && !elephantG.removed && isIntersecting(elephantG, key)) {
       elephantG.remove();
       score += 1;
       key.remove();
+      cageSound.play();
+      //cagesound.setVolume(1);
     }
     else if (!key.removed && !lionG.removed && isIntersecting(lionG, key)) {
       lionG.remove();
       score += 1;
       key.remove();
+      cageSound.play();
+      //cagesound.setVolume(1);
     }
     else if (!key.removed && !giraffeG.removed && isIntersecting(giraffeG, key)) {
       giraffeG.remove();
       score += 1;
       key.remove();
+      cageSound.play();
+      //cagesound.setVolume(1);
     }
   }
-  if(World.frameCount%60===0){
-    time=time-1;
-  }             
+  if (World.frameCount % 60 === 0) {
+    time = time - 1;
+  }
   drawSprites();
   text("Score:" + score, 1050, 50);
   text("time:" + time, 50, 50);
@@ -119,7 +129,7 @@ function isIntersecting(object1, object2) {
   var o2h = object2.height * object2.scale / 2;
 
   return abs(o2x - o1x) <= o1w + o2w &&
-      abs(o2y - o1y) <= o1h + o2h;
+    abs(o2y - o1y) <= o1h + o2h;
 }
 
 
@@ -191,7 +201,7 @@ function lionF() {
     cage.addImage(cage1);
     cage.scale = ANIMAL_SCALE;
     //lionG.add(cage);
-    lionG=cage;
+    lionG = cage;
     cage.velocityY = -(5 * score / 25 + 5);
     cage.x = random(20, 1000);
 
@@ -220,11 +230,11 @@ function giraffeF() {
 
     cage.addImage(cage1);
     cage.scale = ANIMAL_SCALE;
-   // giraffeG.add(cage);
+    // giraffeG.add(cage);
     cage.velocityY = -(5 * score / 25 + 5);
     cage.x = random(20, 1000);
-    
-    giraffeG=cage;
+
+    giraffeG = cage;
 
     cage.lifetime = 900 / 5 + 10;
 
@@ -250,7 +260,7 @@ function keyF() {
 
     key = createSprite(boy.x, 200, 10, 10);
     key.addImage(key1);
-    //keySound.play();
+    keySound.play();
     //keysound.setVolume(1);
 
     key.scale = ANIMAL_SCALE - 0.1;
@@ -260,9 +270,9 @@ function keyF() {
 
     key.y = boy.y;
 
-    noOfKeys=noOfKeys+1;
-    if(noOfKeys=4){
-    noOfKeys=0;
+    noOfKeys = noOfKeys + 1;
+    if (noOfKeys = 4) {
+      noOfKeys = 0;
     }
 
     key.lifetime = 210;
@@ -273,7 +283,7 @@ function keyF() {
 
 
 function scoreF() {
-  if(time<=0&&score<30){
+  if (time <= 0 && score < 30) {
     window.location.href = "level1fail.html";
   }
   if (score >= 30) {

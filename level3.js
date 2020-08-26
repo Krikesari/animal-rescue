@@ -1,4 +1,4 @@
-var bg, cow, cowWidthHalf, car1, car3, car4, car2, key, cow1, key1, car21, score, carA, carB, carC, carD, time, car;
+var bg, cow, cowWidthHalf, car1, car3, car4, car2, key, cow1, key1, car21, score, carA, carB, carC, carD, time, car, carSound, cowSound;
 
 
 
@@ -13,7 +13,8 @@ function preload() {
   car1 = loadImage('car1.png');
   car3 = loadImage('car3.png');
   car4 = loadImage('car4.png');
-
+  carSound = loadSound("car.mp3");
+  cowSound = loadSound("cow.mp3");
 }
 function setup() {
 
@@ -114,6 +115,8 @@ function car3F() {
     carC.scale = 0.25;
     carC.velocityY = 5;
     carC.lifetime = 900 / 5 + 10;
+    carSound.play();
+    carSound.setVolume(0.15);
 
     ALL_OBSTACLES.push(carC);
 
@@ -130,6 +133,8 @@ function car4F() {
     carD.scale = 0.2;
     carD.velocityY = 11;
     carD.lifetime = 900 / 5 + 10;
+    carSound.play();
+    carSound.setVolume(0.05);
 
     ALL_OBSTACLES.push(carD);
   }
@@ -145,6 +150,8 @@ function car2F() {
     carB.scale = 0.25;
     carB.velocityY = 9;
     carB.lifetime = 900 / 5 + 10;
+    cowSound.play();
+    cowSound.setVolume(0.1);
 
     ALL_OBSTACLES.push(carB);
   }
@@ -159,6 +166,8 @@ function car1F() {
     carA.scale = 0.1;
     carA.velocityY = +(10);
     carA.lifetime = 900 / 5 + 10 + 50;
+    //carSound.play();
+    //carSound.setVolume(0.5);
 
     ALL_OBSTACLES.push(carA);
 

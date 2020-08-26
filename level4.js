@@ -1,4 +1,4 @@
-var bg, time, table;
+var bg, time, table, monkeySound, bulletSound;
 var wallHtop, wallHbot, wallH13, wallH16, wallH20, wallH25, wallH27, wallH31, wallH33, wallH40, wallH42, wallH44, wallH49, wallH51, wallH56, wallH60, wallH65, wall69, wallH72, wallH76, wallH81, wallh84, wallH88, wallH93, wallH98;
 var wallVlefta, wallVleftb, wallVrighta, wallVrightb, wallV11, wallV41, wallV61, wallV91, wallV12, wallV72, wallV13, wallV43, wallV63, wallV83, wallV14, wallV54, wallV05, wallV45, wallV16, wallV86, wallV27, wallV67, wallV87, wallV18, wallV38, wallV58, wallV78, wallV09, wallV39, wallV69;
 var banana, monkeyImage, monkeyvisible, bananaImage, monkey, poacher1, poacher2, poacher3, poacher4, poacher5, poacher6, poacher1Image, poacher2hImage, poacher2vImage;
@@ -24,6 +24,8 @@ function preload() {
     poacher1Image = loadImage('poacher1.png');
     poacher2vImage = loadImage('poacher2v.png');
     poacher2hImage = loadImage('poacher2h.png');
+    monkeySound = loadSound("monkey.mp3");
+    bulletSound = loadSound("bullet.mp3");
 
 }
 function setup() {
@@ -269,8 +271,15 @@ function draw() {
 
     background(0, 250, 0);
 
+    if (World.frameCount % 80 === 0) {
+        monkeySound.play();
+        monkeySound.setVolume(0.07);
+    }
+
     poacher1.bounceOff(wallV83);
     poacher1.bounceOff(wallV87);
+    //bulletSound.play();
+    //bulletSound.setVolume(0.05);
 
     poacher2.bounceOff(wallH33);
     poacher2.bounceOff(wallH13);
@@ -278,8 +287,10 @@ function draw() {
     poacher3.bounceOff(wallH76);
     poacher3.bounceOff(wallHbot);
 
+
     poacher4.bounceOff(wallV16);
     poacher4.bounceOff(wallV12);
+   
 
     poacher5.bounceOff(wallV05);
     poacher5.bounceOff(wallV09);
@@ -344,7 +355,7 @@ function draw() {
     monkey.collide(wallH88);
     monkey.collide(wallH93);
     monkey.collide(wallH98);
-    
+
     arrows();
 
     if (isIntersecting(monkey, banana)) {
