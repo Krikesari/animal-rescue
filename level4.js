@@ -110,11 +110,9 @@ function setup() {
     wallH31 = createSprite(310, 277, 1200, 900);
     wallH31.addImage(wallH1);
     wallH31.scale = 0.80;
-
     wallH33 = createSprite(537, 277, 1200, 900);
     wallH33.addImage(wallH2);
     wallH33.scale = 0.80;
-
     wallH40 = createSprite(220, 363, 1200, 900);
     wallH40.addImage(wallH1);
     wallH40.scale = 0.80;
@@ -289,7 +287,64 @@ function draw() {
     poacher6.bounceOff(wallV27);
     poacher6.bounceOff(wallVrighta);
 
+    monkey.collide(wallVlefta);
+    monkey.collide(wallVrightb);
+    monkey.collide(wallVleftb);
+    monkey.collide(wallVrighta);
 
+    monkey.collide(wallV05);
+    monkey.collide(wallV09);
+    monkey.collide(wallV11);
+    monkey.collide(wallV12);
+    monkey.collide(wallV13);
+    monkey.collide(wallV14);
+    monkey.collide(wallV16);
+    monkey.collide(wallV18);
+    monkey.collide(wallV27);
+    monkey.collide(wallV38);
+    monkey.collide(wallV39);
+    monkey.collide(wallV41);
+    monkey.collide(wallV43);
+    monkey.collide(wallV45);
+    monkey.collide(wallV54);
+    monkey.collide(wallV58);
+    monkey.collide(wallV61);
+    monkey.collide(wallV63);
+    monkey.collide(wallV67);
+    monkey.collide(wallV69);
+    monkey.collide(wallV72);
+    monkey.collide(wallV78);
+    monkey.collide(wallV83);
+    monkey.collide(wallV86);
+    monkey.collide(wallV87);
+    monkey.collide(wallV91);
+
+    monkey.collide(wallHtop);
+    monkey.collide(wallHbot);
+    monkey.collide(wallH13);
+    monkey.collide(wallH16);
+    monkey.collide(wallH20);
+    monkey.collide(wallH25);
+    monkey.collide(wallH27);
+    monkey.collide(wallH31);
+    monkey.collide(wallH33);
+    monkey.collide(wallH40);
+    monkey.collide(wallH42);
+    monkey.collide(wallH44);
+    monkey.collide(wallH49);
+    monkey.collide(wallH51);
+    monkey.collide(wallH56);
+    monkey.collide(wallH60);
+    monkey.collide(wallH65);
+    monkey.collide(wallH69);
+    monkey.collide(wallH72);
+    monkey.collide(wallH76);
+    monkey.collide(wallH81);
+    monkey.collide(wallH84);
+    monkey.collide(wallH88);
+    monkey.collide(wallH93);
+    monkey.collide(wallH98);
+    
     arrows();
 
     if (isIntersecting(monkey, banana)) {
@@ -325,19 +380,19 @@ function isIntersecting(object1, object2) {
 function arrows() {
     if (keyDown("DOWN_ARROW")) {
         monkey.velocityY = 7;
-        monkey.velocityX=0;
+        monkey.velocityX = 0;
     }
     if (keyDown("UP_ARROW")) {
         monkey.velocityY = -7;
-        monkey.velocityX=0;
+        monkey.velocityX = 0;
     }
     if (keyDown("LEFT_ARROW")) {
         monkey.velocityX = -7;
-        monkey.velocityY=0;
+        monkey.velocityY = 0;
     }
     if (keyDown("RIGHT_ARROW")) {
         monkey.velocityX = 7;
-        monkey.velocityY=0;
+        monkey.velocityY = 0;
     }
 
 }
