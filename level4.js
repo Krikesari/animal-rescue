@@ -31,7 +31,7 @@ function setup() {
     createCanvas(1200, 900);
     bg = createSprite(1200 / 2, 450, 1200, 900);
     bg.addImage(bg_level4);
-    bg.scale = 1.3;
+    bg.scale = 1.4;
 
 
 
@@ -67,22 +67,22 @@ function setup() {
     poacher3 = createSprite(860, 670, 40, 40);
     poacher3.addImage(poacher2vImage);
     poacher3.scale = 0.25;
-poacher3.velocityY=-6;
+    poacher3.velocityY = -6;
 
     poacher4 = createSprite(410, 320, 40, 40);
     poacher4.addImage(poacher2hImage);
     poacher4.scale = 0.25;
-poacher4.velocityX=-5;
+    poacher4.velocityX = -5;
 
     poacher6 = createSprite(860, 240, 40, 40);
     poacher6.addImage(poacher2hImage);
     poacher6.scale = 0.25;
-poacher6.velocityX=5;
+    poacher6.velocityX = 5;
 
     poacher5 = createSprite(670, 60, 40, 40);
     poacher5.addImage(poacher1Image);
     poacher5.scale = 0.13;
-    poacher5.velocityX=5;
+    poacher5.velocityX = 5;
 
 
 
@@ -114,7 +114,7 @@ poacher6.velocityX=5;
     wallH33 = createSprite(537, 277, 1200, 900);
     wallH33.addImage(wallH2);
     wallH33.scale = 0.80;
-    
+
     wallH40 = createSprite(220, 363, 1200, 900);
     wallH40.addImage(wallH1);
     wallH40.scale = 0.80;
@@ -264,6 +264,7 @@ poacher6.velocityX=5;
 
 
 
+
 }
 
 function draw() {
@@ -288,6 +289,12 @@ function draw() {
     poacher6.bounceOff(wallV27);
     poacher6.bounceOff(wallVrighta);
 
+
+    arrows();
+
+    if (isIntersecting(monkey, banana)) {
+        window.location.href = "level4complete.html";
+    }
     if (World.frameCount % 60 === 0) {
         time = time - 1;
     }
@@ -314,4 +321,23 @@ function isIntersecting(object1, object2) {
 
     return abs(o2x - o1x) <= o1w + o2w &&
         abs(o2y - o1y) <= o1h + o2h;
+}
+function arrows() {
+    if (keyDown("DOWN_ARROW")) {
+        monkey.velocityY = 7;
+        monkey.velocityX=0;
+    }
+    if (keyDown("UP_ARROW")) {
+        monkey.velocityY = -7;
+        monkey.velocityX=0;
+    }
+    if (keyDown("LEFT_ARROW")) {
+        monkey.velocityX = -7;
+        monkey.velocityY=0;
+    }
+    if (keyDown("RIGHT_ARROW")) {
+        monkey.velocityX = 7;
+        monkey.velocityY=0;
+    }
+
 }

@@ -36,7 +36,7 @@ function draw() {
     if (gameState === "BB") {
         bglevel2.visible = true;
         var clickToStartLevel2 = createSprite(625,220,230,80);
-        clickToStartLevel2.visible = true;
+        clickToStartLevel2.visible = false;
   
          if(mousePressedOver(clickToStartLevel2)) {
             window.location.href = "level2.html";

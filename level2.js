@@ -32,7 +32,7 @@ function setup() {
   kangaroo = createSprite(300, 400, 20, 40);
   kangaroo.addImage(invisibleKangaroo1);
   kangaroo.scale = 0.3;
-  invisibleKangaroo = createSprite(250, 300, 150, 300);
+  invisibleKangaroo = createSprite(250, 300, 100, 300);
   invisibleKangaroo.visible = false;
   invisibleKangaroo.x = 170;
 
@@ -76,7 +76,9 @@ function draw() {
 
 
     }
-
+    if (World.frameCount % 80 ===  79 && isIntersecting(invisibleKangaroo, invisibleGround)) {
+      invisibleKangaroo.velocityY=-10;
+    }
     //add gravity
     invisibleKangaroo.velocityY = invisibleKangaroo.velocityY + 1.6;
 
@@ -132,6 +134,7 @@ function spawnObstacles() {
 
     ALL_OBSTACLES.push(obstacle);
 
+    //obstacle.debug=true;
     //obstacle.depth=invisibleKangaroo.depth;
     //invisibleKangaroo.depth=invisibleKangaroo.depth+1;
     //add each obstacle to the group
@@ -157,7 +160,7 @@ function last2() {
 
       newObstacles.push(obs);
 
-      if (isIntersecting(obs, kangaroo)) {
+      if (isIntersecting(obs, invisibleKangaroo)) {
         gameState = "END";
         break;
       }
