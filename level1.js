@@ -15,7 +15,7 @@ function preload() {
   elephant1 = loadImage('elephant.png');
   cage1 = loadImage('cage.png');
   key1 = loadImage('key.png');
- //               keySound = loadSound("key.mp3");
+  //keySound = loadSound("key.mp3");
 }
 function setup() {
 
@@ -256,7 +256,7 @@ function keyF() {
     key.scale = ANIMAL_SCALE - 0.1;
     keyG.add(key);
 
-    key.velocityX = -6;
+    key.velocityX = -15;
 
     key.y = boy.y;
 
