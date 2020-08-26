@@ -35,7 +35,7 @@ function setup() {
 
 
 
-    time = 60;
+    time = 100;
     table = createSprite(630, 450, 1200, 900);
     table.addImage(table1);
     table.scale = 0.80;
@@ -57,26 +57,32 @@ function setup() {
     poacher1 = createSprite(500, 837, 40, 40);
     poacher1.addImage(poacher1Image);
     poacher1.scale = 0.14;
-    poacher1.velocityX = -6;
+    poacher1.velocityX = 6;
 
     poacher2 = createSprite(500, 235, 40, 40);
     poacher2.addImage(poacher1Image);
     poacher2.scale = 0.14;
-    poacher1.velocityX = -6;
-    
-    poacher3 = createSprite(770, 670, 40, 40);
-    poacher3.addImage(poacher2hImage);
+    poacher2.velocityY = -6;
+
+    poacher3 = createSprite(860, 670, 40, 40);
+    poacher3.addImage(poacher2vImage);
     poacher3.scale = 0.25;
-    poacher4 = createSprite(410, 310, 40, 40);
-    poacher4.addImage(poacher2vImage);
+poacher3.velocityY=-6;
+
+    poacher4 = createSprite(410, 320, 40, 40);
+    poacher4.addImage(poacher2hImage);
     poacher4.scale = 0.25;
-    poacher6 = createSprite(860, 230, 40, 40);
-    poacher6.addImage(poacher2vImage);
+poacher4.velocityX=-5;
+
+    poacher6 = createSprite(860, 240, 40, 40);
+    poacher6.addImage(poacher2hImage);
     poacher6.scale = 0.25;
+poacher6.velocityX=5;
+
     poacher5 = createSprite(670, 60, 40, 40);
     poacher5.addImage(poacher1Image);
     poacher5.scale = 0.13;
-
+    poacher5.velocityX=5;
 
 
 
@@ -104,9 +110,11 @@ function setup() {
     wallH31 = createSprite(310, 277, 1200, 900);
     wallH31.addImage(wallH1);
     wallH31.scale = 0.80;
+
     wallH33 = createSprite(537, 277, 1200, 900);
     wallH33.addImage(wallH2);
     wallH33.scale = 0.80;
+    
     wallH40 = createSprite(220, 363, 1200, 900);
     wallH40.addImage(wallH1);
     wallH40.scale = 0.80;
@@ -264,6 +272,22 @@ function draw() {
 
     poacher1.bounceOff(wallV83);
     poacher1.bounceOff(wallV87);
+
+    poacher2.bounceOff(wallH33);
+    poacher2.bounceOff(wallH13);
+
+    poacher3.bounceOff(wallH76);
+    poacher3.bounceOff(wallHbot);
+
+    poacher4.bounceOff(wallV16);
+    poacher4.bounceOff(wallV12);
+
+    poacher5.bounceOff(wallV05);
+    poacher5.bounceOff(wallV09);
+
+    poacher6.bounceOff(wallV27);
+    poacher6.bounceOff(wallVrighta);
+
     if (World.frameCount % 60 === 0) {
         time = time - 1;
     }
