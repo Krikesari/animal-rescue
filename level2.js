@@ -1,3 +1,13 @@
+/*Animal Rescue created by "Kridaya Gupta"
+For design Championship 2020
+Includes 4 levele: Free me!, Bushfire!, Dodge! & Poacher's Maze!
+Files included: animalrescue.js, level1.js, level1fail.js, level1complete.js,
+level2.js, level2fail.js, level2complete.js, level3.js, level3fail.js,
+level3complete.js, level4.js, level4fail.js, level4complete.js
+and their respective html
+pictures and sound files are also included*/
+
+
 var gameState = "play";
 var bg, bg_level2, invisibleKangaroo1, kangaroo, fire1, fire1a, fire2, fire2a, fire3, fire3a, time, invisibleKangaroo, obstacle, invisibleGround, rand, jumpSound, count;
 var FIRE_IMAGES = [];
@@ -72,17 +82,16 @@ function draw() {
     //jump when the space key is pressed
     if (keyDown("space") && isIntersecting(invisibleKangaroo, invisibleGround)) {
       jumpSound.play();
-    //jumpsound.setVolume(1);
+      //jumpsound.setVolume(1);
       invisibleKangaroo.velocityY = -40;
 
 
     }
-    if (World.frameCount % 80 ===  79 && isIntersecting(invisibleKangaroo, invisibleGround)) {
-      invisibleKangaroo.velocityY=-10;
+    if (World.frameCount % 80 === 79 && isIntersecting(invisibleKangaroo, invisibleGround)) {
+      invisibleKangaroo.velocityY = -10;
     }
     //add gravity
     invisibleKangaroo.velocityY = invisibleKangaroo.velocityY + 1.6;
-
 
 
     //spawn obstacles
@@ -103,6 +112,8 @@ function draw() {
   text("Score: " + count, 1000, 50);
   kangaroo.x = invisibleKangaroo.x;
   kangaroo.y = invisibleKangaroo.y + 45;
+
+
 }
 function isIntersecting(object1, object2) {
   var o1x = object1.x;
@@ -144,6 +155,13 @@ function spawnObstacles() {
     //obstacle.setCollider("rectangle",0,0,150,150);
 
   }
+  
+  if (count>=200&&count<350) {
+    obstacle.velocityX = -12
+  }
+  if (count>=350) {
+    obstacle.velocityX = -14
+  }
 }
 
 function last2() {
@@ -171,6 +189,7 @@ function last2() {
   ALL_OBSTACLES = newObstacles;
 
   if (gameState === "END") {
+    bg.velocityX = 0;
     window.location.href = "level2fail.html";
   }
   else if (count >= 500) {

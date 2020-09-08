@@ -1,6 +1,14 @@
+/*Animal Rescue created by "Kridaya Gupta"
+For design Championship 2020
+Includes 4 levele: Free me!, Bushfire!, Dodge! & Poacher's Maze!
+Files included: animalrescue.js, level1.js, level1fail.js, level1complete.js,
+level2.js, level2fail.js, level2complete.js, level3.js, level3fail.js,
+level3complete.js, level4.js, level4fail.js, level4complete.js
+and their respective html
+pictures and sound files are also included*/
+
+
 var bg, cow, cowWidthHalf, car1, car3, car4, car2, key, cow1, key1, car21, score, carA, carB, carC, carD, time, car, carSound, cowSound;
-
-
 
 var GAME_WIDTH = 1200;
 var ALL_OBSTACLES = [];
@@ -46,9 +54,9 @@ function draw() {
   cow.x = World.mouseX;
   cowWidthHalf = cow.width * cow.scale / 2;
   if (cow.x - cowWidthHalf < 0) {
-    cow.x = cowWidthHalf+70;
+    cow.x = cowWidthHalf + 70;
   } else if (cow.x + cowWidthHalf > GAME_WIDTH) {
-    cow.x = GAME_WIDTH - cowWidthHalf-70;
+    cow.x = GAME_WIDTH - cowWidthHalf - 70;
   }
 
   car3F();
@@ -67,7 +75,18 @@ function draw() {
       return;
     }
   }
-
+  if (time < 40 && time > 20) {
+    carC.velocityY = 7;
+    carD.velocityY = 13;
+    carB.velocityY = 9 + 2;
+    carA.velocityY = +(10 + 2);
+  }
+  if (time < 20) {
+    carC.velocityY = 7 + 2;
+    carD.velocityY = 13 + 2;
+    carB.velocityY = 9 + 2 + 2;
+    carA.velocityY = +(10 + 2 + 2);
+  }
   drawSprites();
   text("time:" + time, 50, 50);
 

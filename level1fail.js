@@ -43,9 +43,9 @@ function draw() {
           
       }
     }
-  if (gameState==="level1fail"){
-    gameOver.play();
-  }
+ // if (gameState==="level1fail"){
+   // gameOver.play();
+  //}
     if (gameState === "AA") {
         bglevel1.visible = true;
         var clickToStartLevel1 = createSprite(625,220,250,100);

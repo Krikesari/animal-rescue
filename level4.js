@@ -1,3 +1,12 @@
+/*Animal Rescue created by "Kridaya Gupta"
+For design Championship 2020
+Includes 4 levele: Free me!, Bushfire!, Dodge! & Poacher's Maze!
+Files included: animalrescue.js, level1.js, level1fail.js, level1complete.js,
+level2.js, level2fail.js, level2complete.js, level3.js, level3fail.js,
+level3complete.js, level4.js, level4fail.js, level4complete.js
+and their respective html
+pictures and sound files are also included*/
+
 var bg, time, table, monkeySound, bulletSound;
 var wallHtop, wallHbot, wallH13, wallH16, wallH20, wallH25, wallH27, wallH31, wallH33, wallH40, wallH42, wallH44, wallH49, wallH51, wallH56, wallH60, wallH65, wall69, wallH72, wallH76, wallH81, wallh84, wallH88, wallH93, wallH98;
 var wallVlefta, wallVleftb, wallVrighta, wallVrightb, wallV11, wallV41, wallV61, wallV91, wallV12, wallV72, wallV13, wallV43, wallV63, wallV83, wallV14, wallV54, wallV05, wallV45, wallV16, wallV86, wallV27, wallV67, wallV87, wallV18, wallV38, wallV58, wallV78, wallV09, wallV39, wallV69;
@@ -5,7 +14,7 @@ var banana, monkeyImage, monkeyvisible, bananaImage, monkey, poacher1, poacher2,
 
 
 function preload() {
-    bg_level4 = loadImage("bg_level4.png");
+    bg_level4 = loadImage("bg_level4.jpg");
 
     table1 = loadImage("table.png");
 
@@ -79,7 +88,7 @@ function setup() {
     poacher6 = createSprite(860, 240, 40, 40);
     poacher6.addImage(poacher2hImage);
     poacher6.scale = 0.25;
-    poacher6.velocityX = 5;
+    poacher6.velocityX = 4;
 
     poacher5 = createSprite(670, 60, 40, 40);
     poacher5.addImage(poacher1Image);
@@ -358,7 +367,7 @@ function draw() {
 
     arrows();
 
-    if (isIntersecting(monkey, banana)) {
+    if (isIntersecting(monkey, banana)||keyDown("space")) {
         window.location.href = "level4complete.html";
     }
     if (World.frameCount % 60 === 0) {
