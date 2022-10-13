@@ -44,4 +44,3 @@ function draw() {
     }
     drawSprites();
 }
-
